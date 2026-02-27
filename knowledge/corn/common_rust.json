@@ -1,0 +1,9 @@
+{
+  "disease_name": "Common rust",
+  "crop": "corn",
+  "symptoms": "Small, round to elongated reddish-brown pustules appear on both leaf surfaces. Pustules may darken as they age and can be surrounded by yellow halos. Heavy infections can reduce photosynthesis and weaken plants.",
+  "causes": "Common rust is caused by the fungus Puccinia sorghi. Spores are spread by wind and can travel long distances. Warm, humid weather favors rapid infection and spread.",
+  "treatment": "Fungicides can reduce severity when applied early and according to label directions. Focus on protecting the upper leaves that contribute most to grain fill. Scout regularly to time applications effectively.",
+  "prevention": "Use rust-resistant hybrids where possible. Avoid very late planting that exposes crops to peak rust pressure. Maintain good field hygiene and monitor regional rust reports.",
+  "confidence_note": "The rust-like pustules match common rust, but other rust diseases can look similar in certain regions."
+}

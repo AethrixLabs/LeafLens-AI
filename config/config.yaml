@@ -1,0 +1,42 @@
+# LeafLens-AI Configuration
+# Centralized configuration for training, data loading, and augmentation
+
+# Model configuration
+model:
+  input_size: 224
+  num_classes: null  # Will be set automatically from dataset
+
+# Data loading configuration
+data:
+  batch_size: 32
+  num_workers: 4
+  pin_memory: true
+  persistent_workers: true
+  augment: true
+
+# Training configuration
+training:
+  seed: 42
+  epochs: 50
+  learning_rate: 0.001
+  weight_decay: 0.0001
+
+# Augmentation configuration
+augmentation:
+  random_horizontal_flip: 0.5
+  random_rotation_degrees: 15
+  color_jitter_brightness: 0.2
+  color_jitter_contrast: 0.2
+  color_jitter_saturation: 0.2
+  color_jitter_hue: 0.02
+  random_resized_crop_scale: [0.7, 1.0]
+
+# Normalization (ImageNet defaults, can be overridden with dataset stats)
+normalization:
+  mean: [0.485, 0.456, 0.406]
+  std: [0.229, 0.224, 0.225]
+
+# Test-time augmentation
+tta:
+  enabled: false
+  num_augmentations: 3

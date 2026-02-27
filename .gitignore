@@ -1,3 +1,10 @@
+# LeafLens AI specific ignores
+leaflens.db
+*.db
+weather_cache.json
+uploads/
+Dataset_Crop/
+data/
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[codz]

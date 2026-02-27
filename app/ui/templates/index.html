@@ -1,0 +1,277 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><path fill='%2300c853' d='M50 5C20 20 10 50 50 95C90 50 80 20 50 5Z'/></svg>">
+    <title>{{ app_name }} – Crop Disease Detection</title>
+    <meta
+      name="description"
+      content="LeafLens is an AI-powered crop disease detection and explanation engine."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/static/css/styles.css" />
+  </head>
+  <body>
+    <div class="bg-orb orb-1" aria-hidden="true"></div>
+    <div class="bg-orb orb-2" aria-hidden="true"></div>
+
+    <header class="topbar">
+      <div class="container">
+        <div class="brand">
+          <div class="logo" aria-label="LeafLens logo">
+            <span class="leaf-icon">🌿</span>
+            <span class="logo-word"><span class="logo-leaf">Leaf</span><span class="logo-lens">Lens</span></span>
+          </div>
+          <div class="tagline">{{ tagline }}</div>
+        </div>
+
+        <nav class="nav">
+          <a class="nav-link" href="#predict">Predict</a>
+          <a class="nav-link" href="/weather">Weather</a>
+          <a class="nav-link" href="/insight">LeafLens Insight</a>
+          <a class="nav-link" href="/mandi">Mandi</a>
+          <a class="nav-link" href="#about">About</a>
+          <a class="nav-link" href="/docs" target="_blank" rel="noreferrer">Documentation</a>
+          <div id="status-pill-row" class="status-row"></div>
+        </nav>
+      </div>
+    </header>
+
+    <main class="container main">
+      <section id="predict" class="grid">
+        <div class="card card-hero">
+          <div class="card-header">
+            <h1 class="h1">Predict crop disease</h1>
+            <p class="muted">
+              Upload a leaf image, choose the crop, and get predictions, confidence, and explanations.
+            </p>
+          </div>
+
+          <div id="alert" class="alert hidden" role="alert"></div>
+
+          <form id="predict-form" class="form" autocomplete="off">
+            <div class="row">
+              <label class="label" for="crop-select">Crop</label>
+              <div class="select-wrap">
+                <select id="crop-select" name="crop" class="select" required>
+                  <option value="" selected disabled>Loading crops…</option>
+                  <option value="corn">🌽 Corn</option>
+                </select>
+                <div class="select-icon" aria-hidden="true">▾</div>
+              </div>
+              <div class="hint">Auto-populated from the model registry if available.</div>
+            </div>
+
+            <div class="row">
+              <label class="label">Upload image</label>
+              <div id="drop-zone" class="dropzone" role="button" tabindex="0" aria-label="Upload image by drag and drop or browse">
+                <input
+                  id="file-input"
+                  class="file-input"
+                  name="file"
+                  type="file"
+                  accept="image/*"
+                />
+                <div class="dropzone-inner">
+                  <div class="dz-icon" aria-hidden="true">⬆</div>
+                  <div class="dz-title">Drag &amp; drop your image here</div>
+                  <div class="dz-subtitle">or <span class="dz-link">browse</span> to upload</div>
+                </div>
+              </div>
+              <div class="preview">
+                <img id="preview-image" class="preview-img hidden" alt="Preview of uploaded leaf image" />
+                <div id="file-meta" class="file-meta muted hidden"></div>
+              </div>
+            </div>
+
+            <div class="actions">
+              <button id="predict-btn" class="btn btn-primary" type="submit">
+                <span class="btn-label">Predict</span>
+                <span id="predict-spinner" class="spinner hidden" aria-hidden="true"></span>
+              </button>
+              <button id="reset-btn" class="btn btn-ghost" type="button">Reset</button>
+            </div>
+          </form>
+        </div>
+
+        <div class="stack">
+          <div id="result-card" class="card hidden">
+            <div class="card-header tight">
+              <h2 class="h2">Prediction result</h2>
+              <div class="meta-row">
+                <span class="pill hidden" id="prediction-id-pill" title="Prediction ID"></span>
+                <span class="pill pill-subtle hidden" id="cached-badge">Cached</span>
+              </div>
+            </div>
+
+            <div class="result">
+              <div class="result-main">
+                <div class="result-label">
+                  <div class="label-title">Predicted label</div>
+                  <div id="predicted-label" class="label-value">—</div>
+                </div>
+
+                <div class="result-confidence">
+                  <div class="label-title">Confidence</div>
+                  <div class="confidence-row">
+                    <div id="confidence-text" class="confidence-text">—</div>
+                    <div id="confidence-chip" class="chip chip-neutral">—</div>
+                  </div>
+                  <div class="progress" aria-label="Confidence level">
+                    <div id="confidence-bar" class="progress-bar" style="width: 0%"></div>
+                  </div>
+                </div>
+              </div>
+
+              <div id="analytics-block" class="analytics hidden">
+                <div class="section-title">Prediction analytics</div>
+                <div class="analytics-grid">
+                  <div class="analytics-item">
+                    <div class="analytics-label">Model version</div>
+                    <div id="analytics-model" class="analytics-value">—</div>
+                  </div>
+                  <div class="analytics-item">
+                    <div class="analytics-label">Inference time</div>
+                    <div id="analytics-time" class="analytics-value">—</div>
+                  </div>
+                  <div class="analytics-item">
+                    <div class="analytics-label">Device</div>
+                    <div id="analytics-device" class="analytics-value">—</div>
+                  </div>
+                  <div class="analytics-item">
+                    <div class="analytics-label">Image hash</div>
+                    <div id="analytics-hash" class="analytics-value mono">—</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="toggles">
+                <button id="toggle-probs" class="btn btn-secondary" type="button">
+                  Probability distribution
+                </button>
+                <button id="toggle-gradcam" class="btn btn-secondary" type="button">
+                  Grad-CAM
+                </button>
+              </div>
+
+              <div id="probs-section" class="collapse hidden">
+                <div class="collapse-inner">
+                  <div class="section-title">Class probabilities</div>
+                  <div id="probs-list" class="probs-list"></div>
+                </div>
+              </div>
+
+              <div id="gradcam-section" class="collapse hidden">
+                <div class="collapse-inner">
+                  <div class="section-title">Grad-CAM visualization</div>
+                  <img id="gradcam-image" class="gradcam-img" alt="Grad-CAM overlay image" />
+                </div>
+              </div>
+
+              <div class="divider"></div>
+
+              <div class="feedback">
+                <div class="section-title">Was this prediction correct?</div>
+                <div class="feedback-actions">
+                  <button id="feedback-correct" class="btn btn-success" type="button">👍 Correct</button>
+                  <button id="feedback-incorrect" class="btn btn-danger" type="button">👎 Incorrect</button>
+                </div>
+                <div id="feedback-status" class="muted"></div>
+              </div>
+            </div>
+          </div>
+
+          <div id="explain-card" class="card hidden">
+            <div class="card-header tight">
+              <h2 class="h2">Explanation</h2>
+              <div class="right">
+                <span id="explain-spinner" class="spinner hidden" aria-hidden="true"></span>
+              </div>
+            </div>
+
+            <div class="mode-row">
+              <label class="mode-toggle">
+                <input type="checkbox" id="ai-mode-toggle" />
+                <span class="mode-toggle-pill">
+                  <span class="mode-toggle-knob"></span>
+                </span>
+                <span class="mode-toggle-label">AI Mode</span>
+                <span id="ai-mode-badge" class="mode-badge hidden">Powered by Gemini</span>
+              </label>
+            </div>
+
+            <div id="language-selector" class="language-selector hidden">
+              <label class="label" for="language-select">AI Explanation Language</label>
+              <div class="select-wrap">
+                <select id="language-select" name="language" class="select">
+                  <option value="English" selected>🇬🇧 English</option>
+                  <option value="Hindi">🇮🇳 हिन्दी (Hindi)</option>
+                  <option value="Odia">🇮🇳 ଓଡ଼ିଆ (Odia)</option>
+                  <option value="Telugu">🇮🇳 తెలుగు (Telugu)</option>
+                  <option value="Tamil">🇮🇳 தமிழ் (Tamil)</option>
+                </select>
+                <div class="select-icon" aria-hidden="true">▾</div>
+              </div>
+            </div>
+
+            <div class="explain-actions">
+              <button id="explain-simple-btn" class="btn btn-secondary" type="button">
+                Simple Explanation
+              </button>
+              <button id="explain-detailed-btn" class="btn btn-primary" type="button">
+                Explain in Detail (AI)
+              </button>
+            </div>
+
+            <div id="explain-content" class="explain-content">
+              <div class="muted">Run a prediction to unlock explanations.</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="about" class="about">
+        <div class="card">
+          <div class="card-header">
+            <h2 class="h2">About LeafLens</h2>
+            <p class="muted">
+              LeafLens combines multi-crop disease detection with Grad-CAM visualizations and a hybrid
+              explanation engine: deterministic knowledge base insights plus optional LLM expansion with caching.
+            </p>
+          </div>
+          <div class="about-grid">
+            <div class="about-item">
+              <div class="about-title">Fast &amp; reliable</div>
+              <div class="muted">Production-grade API with defensive error handling.</div>
+            </div>
+            <div class="about-item">
+              <div class="about-title">Transparent</div>
+              <div class="muted">Grad-CAM highlights what the model focused on.</div>
+            </div>
+            <div class="about-item">
+              <div class="about-title">Actionable</div>
+              <div class="muted">Knowledge-base guidance: cause, symptoms, spread, treatment, prevention.</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <footer class="footer">
+        <div class="muted">
+          © <span id="year"></span> LeafLens. Built for fast field decisions.
+        </div>
+      </footer>
+    </main>
+
+    <div id="toast-root" class="toast-root" aria-live="polite" aria-relevant="additions"></div>
+
+    <script src="/static/js/app.js" defer></script>
+  </body>
+</html>
+

@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><path fill='%2300c853' d='M50 5C20 20 10 50 50 95C90 50 80 20 50 5Z'/></svg>">
+    <title>{{ app_name }} – LeafLens Insight</title>
+    <meta name="description" content="Real-time IoT sensor and short-term forecast insights." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/static/css/styles.css" />
+  </head>
+  <body>
+    <div class="bg-orb orb-1" aria-hidden="true"></div>
+    <div class="bg-orb orb-2" aria-hidden="true"></div>
+
+    <header class="topbar">
+      <div class="container">
+        <div class="brand">
+          <div class="logo" aria-label="LeafLens logo">
+            <span class="leaf-icon">🌿</span>
+            <span class="logo-word"><span class="logo-leaf">Leaf</span><span class="logo-lens">Lens</span></span>
+          </div>
+          <div class="tagline">{{ tagline }}</div>
+        </div>
+
+        <nav class="nav">
+          <a class="nav-link" href="/">Predict</a>
+          <a class="nav-link" href="/weather">Weather</a>
+          <a class="nav-link" href="/insight">LeafLens Insight</a>
+          <a class="nav-link" href="/mandi">Mandi</a>
+          <a class="nav-link" href="/#about">About</a>
+          <a class="nav-link" href="/docs" target="_blank" rel="noreferrer">Documentation</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="container main">
+      <section class="grid">
+        <div class="card card-hero">
+          <div class="card-header">
+            <h1 class="h1">LeafLens Insight</h1>
+            <p class="muted">Real-time IoT readings and a 3-day weather forecast for selected locations.</p>
+          </div>
+
+          <div id="insight-alert" class="alert hidden" role="alert"></div>
+
+          <div class="form">
+            <div class="row">
+              <label class="label" for="location-select">Location</label>
+              <div class="select-wrap">
+                <select id="location-select" name="location" class="select">
+                  <option value="Bhubaneswar" selected>Bhubaneswar</option>
+                  <option value="Delhi">Delhi</option>
+                  <option value="Mumbai">Mumbai</option>
+                  <option value="Bengaluru">Bengaluru</option>
+                </select>
+                <div class="select-icon" aria-hidden="true">▾</div>
+              </div>
+              <div class="hint">Choose a city to load sensor and forecast data.</div>
+            </div>
+
+            <div class="actions">
+              <button id="insight-refresh" class="btn btn-primary" type="button">
+                <span class="btn-label">Refresh</span>
+                <span id="insight-spinner" class="spinner hidden" aria-hidden="true"></span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="stack">
+          <div id="sensor-card" class="card">
+            <div class="card-header tight">
+              <h2 class="h2">Field Data</h2>
+            </div>
+
+            <div class="sensor-grid">
+              <div class="card sensor-item">
+                <div class="card-header tight"><div class="muted">Temperature</div></div>
+                <div class="h2" id="sensor-temp">— °C</div>
+              </div>
+
+              <div class="card sensor-item">
+                <div class="card-header tight"><div class="muted">Humidity</div></div>
+                <div class="h2" id="sensor-humidity">— %</div>
+              </div>
+
+              <div class="card sensor-item">
+                <div class="card-header tight"><div class="muted">Soil Moisture</div></div>
+                <div class="h2" id="sensor-soil">— %</div>
+              </div>
+
+              <div class="card sensor-item">
+                <div class="card-header tight"><div class="muted">Stress Index</div></div>
+                <div class="h2" id="sensor-stress">—</div>
+              </div>
+            </div>
+          </div>
+
+          <div id="forecast-card" class="card">
+            <div class="card-header tight">
+              <h2 class="h2">3-Day Forecast of Selected City</h2>
+            </div>
+
+            <div id="forecast-list" class="forecast-list muted">Loading forecast…</div>
+          </div>
+        </div>
+      </section>
+
+      <footer class="footer">
+        <div class="muted">
+          © <span id="year"></span> LeafLens. Built for fast field decisions.
+        </div>
+      </footer>
+    </main>
+
+    <script src="/static/js/insight.js" defer></script>
+  </body>
+</html>

@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><path fill='%2300c853' d='M50 5C20 20 10 50 50 95C90 50 80 20 50 5Z'/></svg>">
+    <title>{{ app_name }} – Mandi Prices</title>
+    <meta name="description" content="Mandi market prices for crops." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/static/css/styles.css" />
+  </head>
+  <body>
+    <div class="bg-orb orb-1" aria-hidden="true"></div>
+    <div class="bg-orb orb-2" aria-hidden="true"></div>
+
+    <header class="topbar">
+      <div class="container">
+        <div class="brand">
+          <div class="logo" aria-label="LeafLens logo">
+            <span class="leaf-icon">🌿</span>
+            <span class="logo-word"><span class="logo-leaf">Leaf</span><span class="logo-lens">Lens</span></span>
+          </div>
+          <div class="tagline">{{ tagline }}</div>
+        </div>
+
+        <nav class="nav">
+          <a class="nav-link" href="/">Predict</a>
+          <a class="nav-link" href="/weather">Weather</a>
+          <a class="nav-link" href="/insight">LeafLens Insight</a>
+          <a class="nav-link" href="/mandi">Mandi</a>
+          <a class="nav-link" href="/#about">About</a>
+          <a class="nav-link" href="/docs" target="_blank" rel="noreferrer">Documentation</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="container main">
+      <section class="grid">
+        <div class="card card-hero">
+          <div class="card-header">
+            <h1 class="h1">Mandi Prices</h1>
+            <p class="muted">
+              View average prices, best and worst markets for each crop.
+            </p>
+          </div>
+
+          <div id="mandi-alert" class="alert hidden" role="alert"></div>
+
+          <form id="mandi-form" class="form" autocomplete="off">
+            <div class="row">
+              <label class="label" for="mandi-crop">Crop</label>
+              <div class="select-wrap">
+                <select id="mandi-crop" name="crop" class="select">
+                  <option value="" selected disabled>Loading crops…</option>
+                </select>
+                <div class="select-icon" aria-hidden="true">▾</div>
+              </div>
+            </div>
+
+            <div class="row">
+              <label class="label" for="mandi-language">Language</label>
+              <div class="select-wrap">
+                <select id="mandi-language" name="language" class="select">
+                  <option value="en">English</option>
+                  <option value="hi">Hindi</option>
+                  <option value="od">Odia</option>
+                </select>
+                <div class="select-icon" aria-hidden="true">▾</div>
+              </div>
+            </div>
+
+            <div class="actions">
+              <button id="mandi-btn" class="btn btn-primary" type="submit" disabled>
+                <span class="btn-label">Get Prices</span>
+                <span id="mandi-spinner" class="spinner hidden" aria-hidden="true"></span>
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <div class="stack">
+          <div id="mandi-result-card" class="card hidden">
+            <div id="mandi-result-content">
+              <div class="mandi-dashboard">
+                <h3 id="mandiTitle">Market Overview</h3>
+                
+                <div class="mandi-summary">
+                  <div class="mandi-card primary">
+                    <div class="mandi-label">Average Price</div>
+                    <div class="mandi-value" id="avgPrice">--</div>
+                  </div>
+                  
+                  <div class="mandi-card">
+                    <div class="mandi-label">Total Records</div>
+                    <div class="mandi-value" id="totalRecords">--</div>
+                  </div>
+                </div>
+                
+                <div class="mandi-markets">
+                  <div class="mandi-card best">
+                    <div class="market-title">Best Market</div>
+                    <div class="market-name" id="bestMarket">--</div>
+                    <div class="market-price" id="bestPrice">--</div>
+                  </div>
+                  
+                  <div class="mandi-card worst">
+                    <div class="market-title">Worst Market</div>
+                    <div class="market-name" id="worstMarket">--</div>
+                    <div class="market-price" id="worstPrice">--</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <footer class="footer">
+        <div class="muted">
+          © <span id="year"></span> LeafLens. Built for fast field decisions.
+        </div>
+      </footer>
+    </main>
+
+    <script src="/static/js/mandi.js" defer></script>
+  </body>
+</html>

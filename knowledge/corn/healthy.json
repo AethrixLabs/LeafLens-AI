@@ -1,0 +1,9 @@
+{
+  "disease_name": "Healthy",
+  "crop": "corn",
+  "symptoms": "Leaves are uniformly green with no spots, streaks, or blighted areas. The leaf surface is smooth and firm, and the plant shows steady growth. No wilting or premature yellowing is present.",
+  "causes": "Healthy plants result from good seed quality, balanced nutrition, and favorable growing conditions. Proper water management and low disease pressure help maintain leaf health. Early vigor is supported by consistent stand establishment.",
+  "treatment": "No treatment is needed for healthy leaves. Continue routine scouting to catch any early signs of stress or disease. Maintain normal crop management practices.",
+  "prevention": "Keep plants healthy with balanced fertilization, timely irrigation, and good weed control. Use clean seed and avoid plant stress from compaction or poor drainage. Rotate crops and manage residue to reduce future disease risk.",
+  "confidence_note": "Leaf appearance indicates a healthy crop, but continue monitoring as conditions change."
+}

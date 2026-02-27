@@ -1,0 +1,9 @@
+{
+  "disease_name": "Cercospora leaf spot",
+  "crop": "corn",
+  "symptoms": "Leaves show gray, rectangular lesions that are usually bounded by veins. Spots can expand and merge, leading to larger blighted areas and reduced leaf function. Symptoms are often more obvious on lower to mid-canopy leaves.",
+  "causes": "This disease is caused by Cercospora fungi. It develops best in warm, humid conditions with frequent dew or leaf wetness. Infected crop residue can carry the fungus between seasons.",
+  "treatment": "When disease pressure is high, apply a labeled fungicide at the recommended growth stage. Remove or manage heavily infected residue and avoid practices that keep leaves wet for long periods. Promote airflow by avoiding overly dense stands.",
+  "prevention": "Plant resistant or tolerant hybrids when available. Rotate crops and manage residue to reduce overwintering inoculum. Use balanced fertility and irrigation practices to keep plants vigorous.",
+  "confidence_note": "Field symptoms strongly suggest Cercospora leaf spot, but confirm with local extension guidance if lesions look unusual or mixed."
+}

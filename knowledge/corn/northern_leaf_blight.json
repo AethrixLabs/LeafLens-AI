@@ -1,0 +1,9 @@
+{
+  "disease_name": "Northern leaf blight",
+  "crop": "corn",
+  "symptoms": "Long, cigar-shaped gray-green lesions develop on leaves and can turn tan as they age. Lesions may expand and coalesce, causing large areas of leaf blight. Upper leaves are especially important to protect during grain fill.",
+  "causes": "Northern leaf blight is caused by the fungus Exserohilum turcicum. The pathogen survives on corn residue and spreads by wind and rain splash. Cool to moderate temperatures with high humidity favor infection.",
+  "treatment": "Apply a labeled fungicide when lesions are first observed on susceptible hybrids and conditions favor spread. Prioritize protecting the ear leaf and leaves above it. Remove heavy residue where practical to reduce inoculum.",
+  "prevention": "Plant hybrids with resistance or tolerance to northern leaf blight. Rotate crops and manage residue to lower disease carryover. Avoid excessive irrigation that keeps foliage wet for long periods.",
+  "confidence_note": "Lesion shape and pattern are consistent with northern leaf blight; confirm locally if symptoms differ."
+}

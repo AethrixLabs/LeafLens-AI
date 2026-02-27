@@ -1,0 +1,38 @@
+{
+  "rice": {
+    "diseases": {
+      "Bacterial_blight": {
+        "summary": "Bacterial blight is a serious rice disease caused by Xanthomonas oryzae pv. oryzae. It can cause significant yield loss, especially in irrigated and rain-fed lowland areas.",
+        "cause": "Caused by the bacterium Xanthomonas oryzae pv. oryzae. Spreads through infected seeds, crop residues, and contaminated water. Favored by high humidity, rain, and wind.",
+        "symptoms": "Water-soaked streaks on leaf blades that turn yellow to gray; leaves may wilt and dry (kresek). Lesions often start at leaf tips or edges. In severe cases, entire leaves die.",
+        "spread": "Transmitted via infected seed, wind-blown rain, irrigation water, and mechanical contact. Bacteria enter through wounds or natural openings. Survives in crop residues and alternate hosts.",
+        "treatment": "Remove and destroy severely infected plants. Apply approved copper-based bactericides early; repeat as needed. Ensure balanced nitrogen; avoid excess. Flood fallow or rotate to reduce inoculum.",
+        "prevention": "Use certified disease-free seed. Choose resistant or tolerant varieties. Avoid overhead irrigation when possible. Practice field sanitation and destroy crop residues. Maintain proper plant spacing and avoid excess nitrogen."
+      },
+      "Blast": {
+        "summary": "Rice blast is a fungal disease caused by Pyricularia oryzae. It affects leaves, nodes, panicles, and grains, and can cause severe yield loss under favorable conditions.",
+        "cause": "Caused by the fungus Pyricularia oryzae (Magnaporthe oryzae). Develops in humid, warm conditions. Spores spread by wind and rain. Favored by prolonged leaf wetness and high nitrogen.",
+        "symptoms": "Diamond-shaped or spindle-shaped lesions on leaves with gray centers and brown margins. Node and neck blast cause blackening and breakage. Panicle blast leads to empty or discolored grains.",
+        "spread": "Wind and rain disperse spores. Overwinters on infected straw, seeds, and weeds. Spreads rapidly in dense crops and under high humidity and moderate temperatures (25–28°C).",
+        "treatment": "Apply recommended fungicides (e.g., tricyclazole, isoprothiolane) at first sign of leaf blast; repeat for neck blast if needed. Reduce nitrogen. Improve drainage and avoid water stress.",
+        "prevention": "Use resistant varieties. Use clean seed. Avoid excess nitrogen and late nitrogen application. Ensure good drainage. Destroy infected straw. Rotate crops where feasible."
+      },
+      "Brown_spot": {
+        "summary": "Brown spot is a fungal disease of rice caused by Bipolaris oryzae. It reduces yield and grain quality, especially in nutrient-deficient or stressed plants.",
+        "cause": "Caused by the fungus Bipolaris oryzae (Cochliobolus miyabeanus). More severe in soils deficient in silicon, potassium, or manganese, and in water-stressed or weak plants.",
+        "symptoms": "Small, oval to circular brown spots on leaves, often with a yellow halo. Spots may coalesce. On grains, dark brown to black discoloration (black point). Seedlings may show collar rot.",
+        "spread": "Survives on infected seed and crop residues. Spores spread by wind and rain. Favored by high humidity, warm weather, and nutrient deficiency. Seed-borne transmission is common.",
+        "treatment": "Apply recommended fungicides if outbreak occurs early. Correct nutrient deficiencies (silicon, K, Mn). Improve water management. Remove severely infected plants to reduce spread.",
+        "prevention": "Use clean, treated seed. Maintain soil fertility (especially silicon and potassium). Choose less susceptible varieties. Practice crop rotation and residue management. Avoid water stress."
+      },
+      "Tungro": {
+        "summary": "Rice tungro is a viral disease caused by Rice tungro bacilliform virus (RTBV) and Rice tungro spherical virus (RTSV), transmitted by green leafhoppers. It causes stunting and yield loss.",
+        "cause": "Caused by RTBV and RTSV, transmitted by green leafhoppers (Nephotettix spp.). Both viruses together cause severe symptoms. Insects acquire virus by feeding on infected plants.",
+        "symptoms": "Stunted, yellow-orange discolored plants; leaves may be mottled or striped. Reduced tillering and panicle size. Plants often appear in patches where leafhoppers have fed.",
+        "spread": "Spread by green leafhoppers (Nephotettix virescens and related species). No mechanical or seed transmission. Insects move from infected to healthy plants. Weeds can host viruses and vectors.",
+        "treatment": "No curative treatment for infected plants. Remove symptomatic plants to reduce virus source. Control leafhopper vectors with approved insecticides if populations are high and disease is spreading.",
+        "prevention": "Use resistant or tolerant varieties. Synchronize planting to avoid prolonged green bridge. Remove weeds and ratoon rice. Monitor leafhopper populations. Avoid planting near infected fields."
+      }
+    }
+  }
+}
