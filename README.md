@@ -158,5 +158,3 @@ Contributions are welcome — please open issues or pull requests. Add new crops
 This project is licensed under the MIT License. See `LICENSE` for details.
 
 ---
-
-If you'd like, I can also add example commands, CI steps, or expand sections (dataset prep, evaluation metrics, or deployment instructions).
